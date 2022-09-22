@@ -24,17 +24,14 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 
-Write about 1-2 paragraphs describing the purpose of your project.
+This is a logger that has support for local file writes and database persistence. It has additional dashboards for viewing logs in a web browser.
+
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 
@@ -42,23 +39,66 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them.
+A system running go. You can check if you have go on your system by running
 
 ```
-Give examples
+go version
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running.
-
-Say what the step will be
+Run
 
 ```
-Give the example
+go get github.com/augani/lepora@v0.1.0
 ```
 
-And repeat
+## 🎈 Usage <a name="usage"></a>
+
+```go
+package main
+
+import (
+  "github.com/augani/lepora"
+)
+
+func main(){
+  lep, err := lepora.Setup(lepora.LeporaOptions{
+    // Options
+    // Local means a local file will be created for logging
+		Method: lepora.Local,
+    //Name is your app name that will be used to name the log file
+		Name: "AppTest",
+    // Max size is the maximum size of the log file in bytes
+		MaxSize: 1024,
+    // Max files is the maximum number of log files you want to have
+		MaxFiles: 5,
+    // max days is the maximum number of days you want to keep logs for
+		MaxDays: 7,
+    // Debug is a boolean that determines if you want to log debug messages
+		Debug: true,
+	})
+
+  if err != nil {
+    panic(err)
+  }
+
+  lep.Log("key", "value", "key2", "value2")
+
+  // Logs will be in key value pairs of any number
+}
+```
+
+## ⛏️ Built Using <a name = "built_using"></a>
+
+- [Go](https://golang.org/) - Go
+
+
+## ✍️ Authors <a name = "authors"></a>
+
+- [@augani](https://github.com/augani) - Idea & Initial work
+
+<!-- And repeat
 
 ```
 until finished
@@ -111,4 +151,4 @@ See also the list of [contributors](https://github.com/kylelobo/The-Documentatio
 
 - Hat tip to anyone whose code was used
 - Inspiration
-- References
+- References -->
