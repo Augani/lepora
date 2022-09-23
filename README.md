@@ -50,7 +50,7 @@ go version
 Run
 
 ```
-go get github.com/augani/lepora@v0.1.0
+go get github.com/augani/lepora@v0.1.2
 ```
 
 ## 🎈 Usage <a name="usage"></a>
